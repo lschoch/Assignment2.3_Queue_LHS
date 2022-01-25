@@ -2,10 +2,10 @@ import java.util.Scanner;
 import java.time.Instant;
 /**
  * Class to demonstrate a queue of customers at a burger
- * restaurant using a LinkedQueue. Some customer arrival 
+ * restaurant using a LinkedQueue. Some customer arrivals 
  * are scheduled and others are input by the user. Pseudo-
- * random wait times after reaching the counter with upper 
- * and lower limits.
+ * random wait times after reaching the counter at the front
+ * of the line with upper and lower limits.
  *  
  * @author Lawrence Schoch
  * @version 1.0 */
