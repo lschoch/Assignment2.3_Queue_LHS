@@ -72,7 +72,8 @@ public class Application
     		}
     	}// end while
     	scan.close();
-    	// Process customers who have met threshold for being served.
+    	/* Process customers who have met threshold for being served while awaiting
+    	 * user input. */
     	while (!line.isEmpty()) {
     		// Check time at counter for first in line
     		timeAtCounter = Instant.now().toEpochMilli() 
