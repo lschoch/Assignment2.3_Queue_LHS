@@ -5,7 +5,8 @@ import java.time.Instant;
  * restaurant using a LinkedQueue. Some customer arrivals 
  * are scheduled and others are input by the user. Pseudo-
  * random wait times after reaching the counter at the front
- * of the line with upper and lower limits.
+ * of the line with upper and lower limits. Number of customers
+ * served and averaged counter wait time are reported on exit.
  *  
  * @author Lawrence Schoch
  * @version 1.0 */
@@ -20,19 +21,21 @@ public class Application
 		line.enqueue(new Customer("Bill", Instant.now().toEpochMilli()));
 		System.out.print(line.toString() + "\n\n");
 		System.out.print("Waiting for another customer.\n\n");
-		Thread.sleep(10000);
+		Thread.sleep(8000);
 		System.out.print("Here comes Alice!\n");
 		Thread.sleep(2000);
     	line.enqueue(new Customer("Alice", Instant.now().toEpochMilli()));
     	System.out.print(line.toString() + "\n\n");
 		System.out.print("Waiting for another customer.\n\n");
-    	Thread.sleep(10000);
+    	Thread.sleep(8000);
     	System.out.print("Now Bob is coming to get in line.\n");
     	Thread.sleep(2000);
     	line.enqueue(new Customer("Bob", Instant.now().toEpochMilli()));
     	System.out.print(line.toString() + "\n\n");
     	
     	String served = "";
+    	int numberServed = 0;
+    	long totalTimeAtCounter = 0;
     	Scanner scan = new Scanner(System.in);
 		String newInLine = "";
 		long timeAtCounter = 0;
@@ -57,6 +60,8 @@ public class Application
 							+ " was served after " + timeAtCounter/1000 //Math.min(MAX_TIME_AT_COUNTER/1000, timeAtCounter/1000) 
 							+ " seconds at the counter. <---------------\n\n");
 	    			System.out.print(line.toString() + "\n\n");
+	    			totalTimeAtCounter+=timeAtCounter;
+	    			numberServed++;
 	    		} else 
 	    			break;
     		}
@@ -85,11 +90,17 @@ public class Application
     			System.out.print("\n ---------------> " + served 
     					+ " was served after " + timeAtCounter/1000 //Math.min(MAX_TIME_AT_COUNTER/1000, timeAtCounter/1000)
 						+ " seconds at the counter. <---------------\n\n");
+    			totalTimeAtCounter+=timeAtCounter;
+    			numberServed++;
     		} else 
     			break;
 		}
-    	System.out.print(line.toString() + "\n\n");
-    	System.out.println("\nCome back to the Vegeburger Palace real soon!\n");
+    	System.out.print("Quitting: \n");
+    	System.out.print(line.toString() + "\n");
+    	if (numberServed > 0)
+    		System.out.print(numberServed + " customers were served with an average counter wait time of "
+    				+ totalTimeAtCounter/(numberServed*1000) + " seconds.\n");
+    	System.out.println("Come back to the Vegeburger Palace real soon!\n");
     	
 	}// end main
 	
