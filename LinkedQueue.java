@@ -86,7 +86,10 @@ public final class LinkedQueue<T> implements QueueInterface<T>
 		{
 			while(currentNode != lastNode)
 			{
-				str+= currentNode.getData().toString() + ", ";
+				if (currentNode == firstNode && currentNode.getNextNode() == lastNode)
+					str+= currentNode.getData().toString()+ " ";
+				else
+					str+= currentNode.getData().toString() + ", ";
 			    currentNode = currentNode.getNextNode();
 			}
 			str+= "and " + currentNode.getData().toString() 
