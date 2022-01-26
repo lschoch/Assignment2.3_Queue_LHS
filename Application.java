@@ -30,18 +30,18 @@ public class Application
     	Thread.sleep(8000);
     	System.out.print("Now Bob is coming to get in line.\n");
     	Thread.sleep(2000);
-    	line.enqueue(new Customer("Bob", Instant.now().toEpochMilli()));
+    	line.enqueue(new Customer("Bob", Instant.now().getEpochSecond()));
     	System.out.print(line.toString() + "\n\n");
     	
     	String served = "";
     	int numberServed = 0;
     	long timeAtCounter = 0;
     	long totalTimeAtCounter = 0;
-    	long counterDepartureTime = Instant.now().toEpochMilli();;
+    	long counterDepartureTime = Instant.now().getEpochSecond();
     	Scanner scan = new Scanner(System.in);
 		String newInLine = "";
-		final long MAX_TIME_AT_COUNTER = 30000;
-		final long MIN_TIME_AT_COUNTER = 15000;
+		final long MAX_TIME_AT_COUNTER = 30;
+		final long MIN_TIME_AT_COUNTER = 15;
     	
     	while (!line.isEmpty())
     	{
@@ -50,7 +50,7 @@ public class Application
     		 * MAX_TIME_AT_COUNTER. */
     		while (!line.isEmpty()) {
 	    		// Check time at the counter for the first in line
-	    		timeAtCounter = Instant.now().toEpochMilli()
+	    		timeAtCounter = Instant.now().getEpochSecond()
 	    			- counterDepartureTime;
 	    		if (timeAtCounter >= 
 	    			(long)((MAX_TIME_AT_COUNTER-MIN_TIME_AT_COUNTER)*Math.random())
@@ -59,7 +59,7 @@ public class Application
 	    			counterDepartureTime+= timeAtCounter;
 	    			served = line.dequeue().getName();
 	    			System.out.print("\n ---------------> " + served 
-						+ " was served after " + timeAtCounter/1000 
+						+ " was served after " + timeAtCounter 
 						+ " seconds at the counter. <---------------\n\n");
 	    			System.out.print(line.toString() + "\n\n");
 	    			totalTimeAtCounter+=timeAtCounter;
@@ -83,9 +83,9 @@ public class Application
     	/* while loop to serve those customers whose time at counter
 		 * is greater than either the random interval or the 
 		 * MAX_TIME_AT_COUNTER. */
-		while (!line.isEmpty()) {
+    	while (!line.isEmpty()) {
     		// Check time at the counter for the first in line
-    		timeAtCounter = Instant.now().toEpochMilli()
+    		timeAtCounter = Instant.now().getEpochSecond()
     			- counterDepartureTime;
     		if (timeAtCounter >= 
     			(long)((MAX_TIME_AT_COUNTER-MIN_TIME_AT_COUNTER)*Math.random())
@@ -94,7 +94,7 @@ public class Application
     			counterDepartureTime+= timeAtCounter;
     			served = line.dequeue().getName();
     			System.out.print("\n ---------------> " + served 
-					+ " was served after " + timeAtCounter/1000 
+					+ " was served after " + timeAtCounter 
 					+ " seconds at the counter. <---------------\n\n");
     			System.out.print(line.toString() + "\n\n");
     			totalTimeAtCounter+=timeAtCounter;
@@ -108,10 +108,10 @@ public class Application
     	if (numberServed > 0)
     		if (numberServed == 1)
     			System.out.print(numberServed + " customer was served with an average counter wait time of "
-        			+ totalTimeAtCounter/(numberServed*1000) + " seconds.\n\n");
+        			+ totalTimeAtCounter/(numberServed) + " seconds.\n\n");
     		else
     			System.out.print(numberServed + " customers were served with an average counter wait time of "
-    				+ totalTimeAtCounter/(numberServed*1000) + " seconds.\n\n");
+    				+ totalTimeAtCounter/(numberServed) + " seconds.\n\n");
     	else
     		System.out.print("No customers were served.\n\n");
     	System.out.println("Come back to the Vegeburger Palace real soon!\n");
