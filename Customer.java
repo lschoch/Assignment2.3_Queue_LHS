@@ -30,14 +30,14 @@ public class Customer {
 		this.name = name;
 	}// end setName
 
-	/** Time in milliseconds from the epoch when the
+	/** Time in seconds from the epoch when the
 	 * customer enqueued.
 	 * @return the inLineStartTime */
 	public long getInLineStartTime() {
 		return inLineStartTime;
 	}// end getInLineStartTime
 
-	/** Sets the inLineStartTime in milliseconds from
+	/** Sets the inLineStartTime in seconds from
 	 * the epoch.
 	 * @param inLineStartTime the inLineStartTime to set */
 	public void setInLineStartTime(long inLineStartTime) {
