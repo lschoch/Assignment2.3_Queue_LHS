@@ -23,7 +23,7 @@ public class ThreadClass {
     	line.enqueue(new Customer("Bob", Instant.now().getEpochSecond()));
     	System.out.print(line.toString() + "\n\n");
     	System.out.print("<<<< Enter a name at any time to get in line. >>>>\n\n");
-    	System.out.print("<<<< Enter 'q' to close the line. >>>>\n\n");
+    	System.out.print("<<<< Enter 'q' at any time to close the line. >>>>\n\n");
     	String served = "";
     	int numberServed = 0;
     	long waitTime = 0;
