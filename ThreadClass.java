@@ -7,26 +7,28 @@ public class ThreadClass {
 	private final LinkedQueue<Customer> line = new LinkedQueue<Customer>();
 
     public void serve() throws InterruptedException {
-    	System.out.print("\nWelcome to Vegeburger Palace!\n\n");
+    	System.out.print("\n<<<< Welcome to Vegeburger Palace! >>>>>\n\n");
     	line.enqueue(new Customer("Bill", Instant.now().getEpochSecond()));
 		System.out.print(line.toString() + "\n\n");
-		System.out.print("Let's wait for another customer.\n\n");
-		Thread.sleep(8000);
+		System.out.print("Waiting ... \n\n"); // Let's wait for another customer.\n\n");
+		Thread.sleep(6000);
 		System.out.print("Here comes Alice!\n");
 		Thread.sleep(2000);
     	line.enqueue(new Customer("Alice", Instant.now().getEpochSecond()));
     	System.out.print(line.toString() + "\n\n");
-		System.out.print("Waiting for another customer.\n\n");
+		System.out.print("Waiting ... \n\n"); // for another customer.\n\n");
     	Thread.sleep(8000);
     	System.out.print("Now Bob is coming to get in line.\n");
     	Thread.sleep(2000);
     	line.enqueue(new Customer("Bob", Instant.now().getEpochSecond()));
     	System.out.print(line.toString() + "\n\n");
+    	System.out.print("<<<< Enter a name at any time to get in line. >>>>\n\n");
+    	System.out.print("<<<< Enter 'q' to close the line. >>>>\n\n");
     	String served = "";
     	int numberServed = 0;
     	long waitTime = 0;
     	long totalWaitTime = 0;
-		final long MAX_WAIT_TIME = 40;
+		final long MAX_WAIT_TIME = 30;
 		final long MIN_WAIT_TIME = 20;
 		Random random = new Random();
 		double randomInterval = (MAX_WAIT_TIME-MIN_WAIT_TIME)*random.nextDouble() 
@@ -40,7 +42,7 @@ public class ThreadClass {
     			- line.getFront().getInLineStartTime();
     		if (waitTime >= randomInterval) {
     			served = line.dequeue().getName();
-    			System.out.print("\n ---------------> " + served 
+    			System.out.print("\n---------------> " + served 
 					+ " was served after waiting " + waitTime 
 					+ " seconds. <---------------\n\n");
     			System.out.print(line.toString() + "\n\n");
@@ -52,18 +54,18 @@ public class ThreadClass {
     		}
     	}
     	// The line is empty.
-//    	System.out.print("Quitting: \n");
-    	System.out.print(line.toString() + "\n");
+    	if (!line.isEmpty())
+    		System.out.print(line.toString() + "\n");
     	if (numberServed > 0)
     		if (numberServed == 1)
-    			System.out.print(numberServed + " customer was served with an average wait time of "
+    			System.out.print("\n" + numberServed + " customer was served with an average wait time of "
         			+ totalWaitTime/(numberServed) + " seconds.\n\n");
     		else
-    			System.out.print(numberServed + " customers were served with an average wait time of "
+    			System.out.print("\n" + numberServed + " customers were served with an average wait time of "
     				+ totalWaitTime/(numberServed) + " seconds.\n\n");
     	else
-    		System.out.print("No customers were served.\n\n");
-    	System.out.println("Come back to the Vegeburger Palace real soon!\n");
+    		System.out.print("\nNo customers were served.\n\n");
+    	System.out.println("<<<<< Come back to the Vegeburger Palace real soon! >>>>>\n");
     	try {
     		System.in.close();
     	} catch (IOException e) {
@@ -76,10 +78,7 @@ public class ThreadClass {
 		String newInLine = "";
 		while (!newInLine.toLowerCase().equals("q")) {
 			// Start user input 
-			System.out.println(" <<<< Enter a name at any time to get in line. >>>>\n\n"
-					+ " <<<< Enter 'q' to stop any more customers from getting in line. >>>>\n");
-				
-				newInLine = scan.nextLine();
+			newInLine = scan.nextLine();
 			if (newInLine.toLowerCase().equals("q")) {
 				System.out.print("The line is closed.\n");
 				if (!line.isEmpty())

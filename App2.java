@@ -23,7 +23,7 @@ class App2 {
 		};
 
 		t1.start();
-		Thread.sleep(22000);
+//		Thread.sleep(22000);
 		t2.start();
 		
 	}// end main
