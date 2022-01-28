@@ -1,4 +1,4 @@
-class App2 {
+class Application {
 
 	public static void main(String[] args) throws InterruptedException {
 		final ThreadClass threads = new ThreadClass();
