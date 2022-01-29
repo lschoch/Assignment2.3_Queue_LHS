@@ -42,7 +42,7 @@ public class ThreadClass {
 	    			+ " of the line. >>>>\n\n");
     	} catch (InterruptedException e) {
     		e.printStackTrace();
-    	}
+    	} // end catch
     	
     	String served = "";
     	int numberServed = 0;
@@ -91,7 +91,8 @@ public class ThreadClass {
     		System.in.close();
     	} catch (IOException e) {
     		System.out.println(e.getMessage());
-    	}
+    	}// end catch
+    	
     }// end serve
     
     /** A method that allows user to input new customers while existing 
@@ -121,6 +122,7 @@ public class ThreadClass {
     		 * when the serve method closes System.in while this method is
     		 * waiting for user input.*/
     	}// end catch
+    	
     }// end newCustomer
     
 }// end ThreadClass
