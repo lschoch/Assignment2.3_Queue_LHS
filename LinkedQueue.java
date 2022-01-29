@@ -81,7 +81,8 @@ public final class LinkedQueue<T> implements QueueInterface<T>
 		if (isEmpty())
 			return "The line is empty.";
 		else if (currentNode == lastNode)
-			return currentNode.getData().toString() + " is in line.";
+			return currentNode.getData().toString() + " is in line.\n"
+					+ "Waiting ...";
 		else
 		{
 			while(currentNode != lastNode)
@@ -95,7 +96,8 @@ public final class LinkedQueue<T> implements QueueInterface<T>
 			str+= "and " + currentNode.getData().toString() 
 				+ " are in line. " + firstNode.getData().toString() 
 				+ " is at the front of the line and " 
-				+ lastNode.getData().toString() + " is at the back.";
+				+ lastNode.getData().toString() + " is at the back.\n";
+			str+= "Waiting ...";
 			return str;
 		}
 	}// end toString

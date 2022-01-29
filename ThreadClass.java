@@ -23,13 +23,11 @@ public class ThreadClass {
 	    	System.out.print("\n<<<< Welcome to Vegeburger Palace! >>>>>\n\n");
 	    	line.enqueue(new Customer("Bill", Instant.now().getEpochSecond()));
 			System.out.print(line.toString() + "\n\n");
-			System.out.print("Waiting ... \n\n"); // Let's wait for another customer.\n\n");
 			Thread.sleep(4000);
 			System.out.print("Here comes Alice!\n");
 			Thread.sleep(1000);
 	    	line.enqueue(new Customer("Alice", Instant.now().getEpochSecond()));
 	    	System.out.print(line.toString() + "\n\n");
-			System.out.print("Waiting ... \n\n"); // for another customer.\n\n");
 	    	Thread.sleep(4000);
 	    	System.out.print("Now Bob is coming to get in line.\n");
 	    	Thread.sleep(1000);
@@ -63,7 +61,7 @@ public class ThreadClass {
     			served = line.dequeue().getName();
     			System.out.print("\n---------------> " + served + " was served after "
     				+ "waiting " + waitTime + " seconds. <---------------\n\n");
-    			System.out.print(line.toString() + "\n\n");
+    			System.out.print(line.toString() + "\n");
     			totalWaitTime+=waitTime;
     			numberServed++;
     			// Set randomInterval for next customer.
