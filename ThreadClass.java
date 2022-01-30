@@ -22,22 +22,28 @@ public class ThreadClass {
     	try {
 	    	System.out.print("\n<<<< Welcome to Vegeburger Palace! >>>>>\n\n");
 	    	line.enqueue(new Customer("Bill", Instant.now().getEpochSecond()));
+	    	line.enqueue(new Customer("Alice", Instant.now().getEpochSecond()));
 			System.out.print(line.toString() + "\n\n");
 			Thread.sleep(4000);
-			System.out.print("Here comes Alice!\n");
-			Thread.sleep(1000);
-	    	line.enqueue(new Customer("Alice", Instant.now().getEpochSecond()));
-	    	System.out.print(line.toString() + "\n\n");
-	    	Thread.sleep(4000);
 	    	System.out.print("Now Bob is coming to get in line.\n");
 	    	Thread.sleep(1000);
 	    	line.enqueue(new Customer("Bob", Instant.now().getEpochSecond()));
 	    	System.out.print(line.toString() + "\n\n");
 	    	Thread.sleep(2000);
-	    	System.out.print("<<<< Enter a name at any time to get in line. >>>>\n\n");
+	    	System.out.print("Jane and Hamad have arrived.\n");
+	    	line.enqueue(new Customer("Jane", Instant.now().getEpochSecond()));
+	    	line.enqueue(new Customer("Hamad", Instant.now().getEpochSecond()));
+	    	System.out.print(line.toString() + "\n\n");
+	    	Thread.sleep(3000);
+	    	System.out.print("<<<< Enter your name at any time to get in line. >>>>\n\n");
 	    	System.out.print("<<<< Enter 'q' at any time to close the line. >>>>\n\n");
-	    	System.out.print("<<<< Customers will be served when they reach the front"
+	    	System.out.print("<<<< Customers are served when they reach the front"
 	    			+ " of the line. >>>>\n\n");
+	    	Thread.sleep(3000);
+	    	System.out.print("Jim has arrived.\n");
+	    	line.enqueue(new Customer("Jim", Instant.now().getEpochSecond()));
+	    	System.out.print(line.toString() + "\n\n");
+	    	Thread.sleep(3000);
     	} catch (InterruptedException e) {
     		e.printStackTrace();
     	} // end catch
@@ -50,11 +56,21 @@ public class ThreadClass {
 		Random random = new Random();
 		double randomInterval = (MAX_WAIT_TIME/2)*random.nextDouble() 
 				+ MAX_WAIT_TIME/2;
-    	    	
+		
+		// Serve the first two customers in line.
+		long firstTwoWaitTime = Instant.now().getEpochSecond() - 
+				line.getFront().getInLineStartTime();
+		totalWaitTime+=2*firstTwoWaitTime;
+		numberServed+=2;
+		System.out.print(line.dequeue().getName() + " and " 
+				+ line.dequeue().getName() + " were served after waiting "
+				+ firstTwoWaitTime + " seconds each.\n\n");
+		System.out.print(line.toString() + "\n");
+    
+		// Serve customers when their wait time reaches threshold
     	while (!line.isEmpty())
     	{
-    		/* Check waitTimeime for the customer at the front of the
-    		 * line. */
+    		// Check waitTimeime for the customer at the front of the line. 
     		waitTime = Instant.now().getEpochSecond()
     			- line.getFront().getInLineStartTime();
     		if (waitTime >= randomInterval) {
