@@ -20,27 +20,27 @@ public class ThreadClass {
 	 */
     public void serve() {
     	try {
-	    	System.out.print("\n<<<< Welcome to Vegeburger Palace! >>>>>\n\n");
+	    	System.out.print("\n <<<< Welcome to Vegeburger Palace! >>>>>\n\n");
 	    	line.enqueue(new Customer("Bill", Instant.now().getEpochSecond()));
 	    	line.enqueue(new Customer("Alice", Instant.now().getEpochSecond()));
 			System.out.print(line.toString() + "\n\n");
 			Thread.sleep(4000);
-	    	System.out.print("Now Bob is coming to get in line.\n");
+	    	System.out.print(" Now Bob is coming to get in line.\n");
 	    	Thread.sleep(1000);
 	    	line.enqueue(new Customer("Bob", Instant.now().getEpochSecond()));
 	    	System.out.print(line.toString() + "\n\n");
 	    	Thread.sleep(2000);
-	    	System.out.print("Jane and Hamad have arrived.\n");
+	    	System.out.print(" Jane and Hamad have arrived.\n");
 	    	line.enqueue(new Customer("Jane", Instant.now().getEpochSecond()));
 	    	line.enqueue(new Customer("Hamad", Instant.now().getEpochSecond()));
 	    	System.out.print(line.toString() + "\n\n");
 	    	Thread.sleep(3000);
-	    	System.out.print("<<<< Enter your name at any time to get in line. >>>>\n\n");
-	    	System.out.print("<<<< Enter 'q' at any time to close the line. >>>>\n\n");
-	    	System.out.print("<<<< Customers are served when they reach the front"
+	    	System.out.print(" <<<< Enter your name at any time to get in line. >>>>\n\n");
+	    	System.out.print(" <<<< Enter 'q' at any time to close the line. >>>>\n\n");
+	    	System.out.print(" <<<< Customers are served when they reach the front"
 	    			+ " of the line. >>>>\n\n");
 	    	Thread.sleep(3000);
-	    	System.out.print("Jim has arrived.\n");
+	    	System.out.print(" Jim has arrived.\n");
 	    	line.enqueue(new Customer("Jim", Instant.now().getEpochSecond()));
 	    	System.out.print(line.toString() + "\n\n");
 	    	Thread.sleep(3000);
@@ -62,7 +62,7 @@ public class ThreadClass {
 				line.getFront().getInLineStartTime();
 		totalWaitTime+=2*firstTwoWaitTime;
 		numberServed+=2;
-		System.out.print(line.dequeue().getName() + " and " 
+		System.out.print(" " + line.dequeue().getName() + " and " 
 				+ line.dequeue().getName() + " were served after waiting "
 				+ firstTwoWaitTime + " seconds each.\n\n");
 		System.out.print(line.toString() + "\n");
@@ -75,7 +75,7 @@ public class ThreadClass {
     			- line.getFront().getInLineStartTime();
     		if (waitTime >= randomInterval) {
     			served = line.dequeue().getName();
-    			System.out.print("\n---------------> " + served + " was served after "
+    			System.out.print("\n ---------------> " + served + " was served after "
     				+ "waiting " + waitTime + " seconds. <---------------\n\n");
     			System.out.print(line.toString() + "\n");
     			totalWaitTime+=waitTime;
@@ -90,16 +90,16 @@ public class ThreadClass {
     		System.out.print(line.toString() + "\n");
     	if (numberServed > 0)
     		if (numberServed == 1)
-    			System.out.print("\n" + numberServed + " customer was served with "
+    			System.out.print("\n " + numberServed + " customer was served with "
     				+ "an average wait time of " + totalWaitTime/(numberServed) 
     				+ " seconds.\n\n");
     		else
-    			System.out.print("\n" + numberServed + " customers were served with "
+    			System.out.print("\n " + numberServed + " customers were served with "
     				+ "an average wait time of " + totalWaitTime/(numberServed) 
     				+ " seconds.\n\n");
     	else
-    		System.out.print("\nNo customers were served.\n\n");
-    	System.out.println("<<<<< Good-bye. Come back to the Vegeburger Palace "
+    		System.out.print("\n No customers were served.\n\n");
+    	System.out.println(" <<<<< Good-bye. Come back to the Vegeburger Palace "
     		+ "real soon! >>>>>\n");
     	try {
     		System.in.close();
@@ -120,9 +120,9 @@ public class ThreadClass {
 				// Start user input 
 				newInLine = scan.nextLine();
 				if (newInLine.toLowerCase().equals("q")) {
-					System.out.print("The line is closed.\n");
+					System.out.print(" The line is closed.\n");
 					if (!line.isEmpty())
-							System.out.print("All those remaining in line will be served.\n");
+							System.out.print(" All those remaining in line will be served.\n");
 					break;
 				}
 				else if (!newInLine.isBlank()) {

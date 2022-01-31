@@ -76,13 +76,13 @@ public final class LinkedQueue<T> implements QueueInterface<T>
 	 */
 	@Override
 	public String toString() {
-		String str = "";
+		String str = " ";
 		Node currentNode = firstNode;
 		if (isEmpty())
-			return "The line is empty.";
+			return " The line is empty.";
 		else if (currentNode == lastNode)
-			return currentNode.getData().toString() + " is in line.\n"
-					+ "Waiting ...";
+			return " " + currentNode.getData().toString() + " is in line.\n"
+					+ " Waiting ...";
 		else
 		{
 			while(currentNode != lastNode)
@@ -97,7 +97,7 @@ public final class LinkedQueue<T> implements QueueInterface<T>
 				+ " are in line. " + firstNode.getData().toString() 
 				+ " is at the front of the line and " 
 				+ lastNode.getData().toString() + " is at the back.\n";
-			str+= "Waiting ...";
+			str+= " Waiting ...";
 			return str;
 		}
 	}// end toString
